@@ -14,5 +14,8 @@ public class AutoMapperProfiles: Profile
         CreateMap<Actor, ActorDto>();
         CreateMap<CreateActorDto, Actor>();
         CreateMap<UpdateActorDto, Actor>();
+        CreateMap<Movie, MovieDto>();
+        CreateMap<CreateMovieDto, Movie>();
+        CreateMap<UpdateMovieDto, Movie>();
     }
 }
