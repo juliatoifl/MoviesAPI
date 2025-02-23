@@ -1,6 +1,6 @@
 using MoviesAPI.Entities;
 
-namespace MoviesAPI.Genres;
+namespace MoviesAPI.Repositories;
 
 public interface IGenresRepository
 {

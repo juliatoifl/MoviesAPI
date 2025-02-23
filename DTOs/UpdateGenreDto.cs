@@ -1,6 +1,6 @@
 namespace MoviesAPI.DTOs;
 
-public class CreateGenreDTO
+public class UpdateGenreDto
 {
     public string Name { get; set; } = null!;
 }

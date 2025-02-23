@@ -74,3 +74,4 @@
 /Users/juliatoifl/MoviesAPI/obj/Debug/net9.0/MoviesAPI.pdb
 /Users/juliatoifl/MoviesAPI/obj/Debug/net9.0/MoviesAPI.genruntimeconfig.cache
 /Users/juliatoifl/MoviesAPI/obj/Debug/net9.0/ref/MoviesAPI.dll
+/Users/juliatoifl/MoviesAPI/obj/Debug/net9.0/MoviesAPI.sourcelink.json

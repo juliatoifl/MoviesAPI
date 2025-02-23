@@ -1,11 +1,12 @@
 using MoviesAPI.Endpoints;
-using MoviesAPI.Genres;
+using MoviesAPI.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Services zone - BEGIN
 
 builder.Services.AddScoped<IGenresRepository, GenresRepository>();
+builder.Services.AddScoped<IActorsRepository, ActorsRepository>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -26,6 +27,7 @@ if (builder.Environment.IsDevelopment())
 app.MapGet("/", () => "Hello world!");
 
 app.MapGroup("/genres").MapGenres();
+app.MapGroup("/actors").MapActors();
 
 // Middleware zone - END
 app.Run();

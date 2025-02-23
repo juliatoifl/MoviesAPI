@@ -8,7 +8,11 @@ public class AutoMapperProfiles: Profile
 {
     public AutoMapperProfiles()
     {
-        CreateMap<Genre, GenreDTO>();
-        CreateMap<CreateGenreDTO, Genre>();
+        CreateMap<Genre, GenreDto>();
+        CreateMap<CreateGenreDto, Genre>();
+        CreateMap<UpdateGenreDto, Genre>();
+        CreateMap<Actor, ActorDto>();
+        CreateMap<CreateActorDto, Actor>();
+        CreateMap<UpdateActorDto, Actor>();
     }
 }

@@ -2,7 +2,7 @@ using Dapper;
 using Microsoft.Data.SqlClient;
 using MoviesAPI.Entities;
 
-namespace MoviesAPI.Genres;
+namespace MoviesAPI.Repositories;
 
 public class GenresRepository : IGenresRepository
 {

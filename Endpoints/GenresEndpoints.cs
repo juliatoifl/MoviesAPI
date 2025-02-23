@@ -2,7 +2,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http.HttpResults;
 using MoviesAPI.DTOs;
 using MoviesAPI.Entities;
-using MoviesAPI.Genres;
+using MoviesAPI.Repositories;
 
 namespace MoviesAPI.Endpoints;
 
@@ -18,14 +18,14 @@ public static class GenresEndpoints
         return group;
     }   
     
-    static async Task<Ok<List<GenreDTO>>> GetGenres(IGenresRepository genresRepository, IMapper mapper)
+    static async Task<Ok<List<GenreDto>>> GetGenres(IGenresRepository genresRepository, IMapper mapper)
     {
         var genres = await genresRepository.GetAll();
-        var genreDTOs = mapper.Map<List<GenreDTO>>(genres);        
+        var genreDTOs = mapper.Map<List<GenreDto>>(genres);        
         return TypedResults.Ok(genreDTOs);
     }
 
-    static async Task<Results<Ok<GenreDTO>, NotFound>> GetById(int id, IGenresRepository genresRepository, IMapper mapper)
+    static async Task<Results<Ok<GenreDto>, NotFound>> GetById(int id, IGenresRepository genresRepository, IMapper mapper)
     {
         var genre = await genresRepository.GetById(id);
         if (genre is null)
@@ -33,12 +33,12 @@ public static class GenresEndpoints
             return TypedResults.NotFound();
         }
 
-        var genreDTO = mapper.Map<GenreDTO>(genre);
+        var genreDTO = mapper.Map<GenreDto>(genre);
         
         return TypedResults.Ok(genreDTO);
     }
 
-    static async Task<Created<GenreDTO>> Create(CreateGenreDTO createGenreDto, IGenresRepository genresRepository, IMapper mapper)
+    static async Task<Created<GenreDto>> Create(CreateGenreDto createGenreDto, IGenresRepository genresRepository, IMapper mapper)
     {
         var genre = new Genre()
         {
@@ -47,12 +47,12 @@ public static class GenresEndpoints
         
         var id = await genresRepository.Create(genre);
         
-        var genreDTO = mapper.Map<GenreDTO>(genre);
+        var genreDTO = mapper.Map<GenreDto>(genre);
         
         return TypedResults.Created(new Uri($"/genres/{id}"), genreDTO);
     }
 
-    static async Task<Results<NotFound, NoContent>> Update(int id, CreateGenreDTO createGenreDto, IGenresRepository genresRepository, IMapper mapper)
+    static async Task<Results<NotFound, NoContent>> Update(int id, UpdateGenreDto updateGenreDto, IGenresRepository genresRepository, IMapper mapper)
     {
         var exists = await genresRepository.Exists(id);
         if (!exists)
@@ -60,7 +60,7 @@ public static class GenresEndpoints
             return TypedResults.NotFound();
         }
 
-        var genre = mapper.Map<Genre>(createGenreDto);
+        var genre = mapper.Map<Genre>(updateGenreDto);
         genre.Id = id;
     
         await genresRepository.Update(genre);
