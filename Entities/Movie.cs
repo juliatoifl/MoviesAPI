@@ -6,8 +6,5 @@ namespace MoviesAPI.Entities
         public string Title { get; set; } = null!;
         public int ReleaseYear { get; set; }
         public int GenreId { get; set; }
-        
-        // Navigation property
-        public Genre? Genre { get; set; }
     }
 }

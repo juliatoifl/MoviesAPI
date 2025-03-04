@@ -48,6 +48,12 @@ public class ActorsRepository: IActorsRepository
             return actor;
         }
     }
+    
+    public async Task<Actor?> GetById(SqlConnection connection, SqlTransaction transaction, int actorId)
+    {
+        var query = "SELECT FirstName, LastName FROM Actor WHERE Id = @ActorId";
+        return await connection.QuerySingleOrDefaultAsync<Actor>(query, new { ActorId = actorId }, transaction);
+    }
 
     public async Task<bool> Exists(int id)
     {
@@ -87,5 +93,11 @@ public class ActorsRepository: IActorsRepository
         {
             await connection.ExecuteAsync(@"DELETE FROM Actor WHERE Id = @Id", new { id });
         }
+    }
+    
+    public async Task Delete(SqlConnection connection, SqlTransaction transaction, int actorId)
+    {
+        var query = "DELETE FROM Actor WHERE Id = @ActorId";
+        await connection.ExecuteAsync(query, new { ActorId = actorId }, transaction);
     }
 }

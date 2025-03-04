@@ -11,9 +11,12 @@ builder.Services.AddScoped<IActorsRepository, ActorsRepository>();
 builder.Services.AddScoped<IMoviesRepository, MoviesRepository>();
 builder.Services.AddScoped<IActorMovieRepository, ActorMovieRepository>();
 builder.Services.AddScoped<IAcademyAwardNominationRepository, AcademyAwardNominationRepository>();
+builder.Services.AddScoped<IScandalLogRepository, ScandalLogRepository>();
 
-builder.Services.AddScoped<CreateAcademyAwardNominations>();
-builder.Services.AddScoped<UpdateNomineeListAfterScandal>();
+builder.Services.AddScoped<CreateAcademyAwardNomination>();
+builder.Services.AddScoped<ReactToScandal>();
+builder.Services.AddScoped<BulkImportPastWinners>();
+builder.Services.AddScoped<MeasurePerformance>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -35,6 +38,7 @@ app.MapGroup("/genres").MapGenres();
 app.MapGroup("/actors").MapActors();
 app.MapGroup("/movies").MapMovies();
 app.MapGroup("/academy-awards").MapAcademyAwards();
+app.MapGroup("/performance").MapPerformance();
 
 // Middleware zone - END
 app.Run();

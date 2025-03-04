@@ -1,0 +1,14 @@
+[
+  {
+    "actorId": 1,
+    "reason": "Allegations of misconduct"
+  },
+  {
+    "actorId": 2,
+    "reason": "Legal conviction"
+  },
+  {
+    "actorId": 5,
+    "reason": "Controversial allegations"
+  }
+]

@@ -12,7 +12,6 @@ namespace MoviesAPI.Entities
         public Actor? Actor { get; set; }
         public Movie? Movie { get; set; }
 
-        // Extra properties for insertion (not mapped to DB)
         public string ActorFirstName { get; set; } = null!;
         public string ActorLastName { get; set; } = null!;
         public DateTime ActorDateOfBirth { get; set; }

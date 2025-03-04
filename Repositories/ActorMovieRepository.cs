@@ -15,5 +15,11 @@ namespace MoviesAPI.Repositories
 
             await connection.ExecuteAsync(query, new { ActorId = actorId, MovieId = movieId }, transaction);
         }
+        
+        public async Task Delete(SqlConnection connection, SqlTransaction transaction, int actorId)
+        {
+            var query = "DELETE FROM ActorMovie WHERE ActorId = @ActorId";
+            await connection.ExecuteAsync(query, new { ActorId = actorId }, transaction);
+        }
     }
 }
