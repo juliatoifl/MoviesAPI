@@ -59,6 +59,19 @@ public class ActorsRepository: IActorsRepository
             return exists;
         }
     }
+    
+    public async Task<int> EnsureActorExists(SqlConnection connection, SqlTransaction transaction, string firstName, string lastName, DateTime dateOfBirth)
+    {
+        var query = @"
+                IF NOT EXISTS (SELECT 1 FROM Actor WHERE FirstName = @FirstName AND LastName = @LastName)
+                BEGIN
+                    INSERT INTO Actor (FirstName, LastName, DateOfBirth) 
+                    VALUES (@FirstName, @LastName, @DateOfBirth);
+                END;
+                SELECT Id FROM Actor WHERE FirstName = @FirstName AND LastName = @LastName;";
+
+        return await connection.ExecuteScalarAsync<int>(query, new { FirstName = firstName, LastName = lastName, DateOfBirth = dateOfBirth }, transaction);
+    }
 
     public async Task Update(Actor actor)
     {

@@ -57,6 +57,18 @@ public class MoviesRepository: IMoviesRepository
             return exists;
         }
     }
+    
+    public async Task<int> EnsureMovieExists(SqlConnection connection, SqlTransaction transaction, string title, int releaseYear, int genreId)
+    {
+        var query = @"
+                IF NOT EXISTS (SELECT 1 FROM Movie WHERE Title = @Title AND ReleaseYear = @ReleaseYear)
+                BEGIN
+                    INSERT INTO Movie (Title, ReleaseYear, GenreId) VALUES (@Title, @ReleaseYear, @GenreId);
+                END;
+                SELECT Id FROM Movie WHERE Title = @Title AND ReleaseYear = @ReleaseYear;";
+
+        return await connection.ExecuteScalarAsync<int>(query, new { Title = title, ReleaseYear = releaseYear, GenreId = genreId }, transaction);
+    }
 
     public async Task Update(Movie movie)
     {

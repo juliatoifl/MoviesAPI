@@ -56,6 +56,18 @@ public class GenresRepository : IGenresRepository
             return exists;
         }
     }
+    
+        public async Task<int> EnsureGenreExists(SqlConnection connection, SqlTransaction transaction, string genreName)
+        {
+            var query = @"
+                IF NOT EXISTS (SELECT 1 FROM Genre WHERE Name = @GenreName)
+                BEGIN
+                    INSERT INTO Genre (Name) VALUES (@GenreName);
+                END;
+                SELECT Id FROM Genre WHERE Name = @GenreName;";
+
+            return await connection.ExecuteScalarAsync<int>(query, new { GenreName = genreName }, transaction);
+        }
 
     public async Task Update(Genre genre)
     {

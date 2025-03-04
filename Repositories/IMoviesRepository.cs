@@ -1,3 +1,4 @@
+using Microsoft.Data.SqlClient;
 using MoviesAPI.Entities;
 
 namespace MoviesAPI.Repositories;
@@ -8,6 +9,6 @@ public interface IMoviesRepository
     Task<List<Movie>> GetAll();
     Task<Movie?> GetById(int id);
     Task<bool> Exists(int id);
-    Task Update(Movie movie);
+    Task<int> EnsureMovieExists(SqlConnection connection, SqlTransaction transaction, string title, int releaseYear, int genreId);    Task Update(Movie movie);
     Task Delete(int id);
 }

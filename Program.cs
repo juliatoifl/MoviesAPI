@@ -1,5 +1,6 @@
 using MoviesAPI.Endpoints;
 using MoviesAPI.Repositories;
+using MoviesAPI.UseCases;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IGenresRepository, GenresRepository>();
 builder.Services.AddScoped<IActorsRepository, ActorsRepository>();
 builder.Services.AddScoped<IMoviesRepository, MoviesRepository>();
+builder.Services.AddScoped<IActorMovieRepository, ActorMovieRepository>();
+builder.Services.AddScoped<IAcademyAwardNominationRepository, AcademyAwardNominationRepository>();
+
+builder.Services.AddScoped<CreateAcademyAwardNominations>();
+builder.Services.AddScoped<UpdateNomineeListAfterScandal>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -25,11 +31,10 @@ if (builder.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapGet("/", () => "Hello world!");
-
 app.MapGroup("/genres").MapGenres();
 app.MapGroup("/actors").MapActors();
 app.MapGroup("/movies").MapMovies();
+app.MapGroup("/academy-awards").MapAcademyAwards();
 
 // Middleware zone - END
 app.Run();

@@ -1,0 +1,123 @@
+[
+  {
+    "actorFirstName": "Robert",
+    "actorLastName": "Duvall",
+    "actorDateOfBirth": "1931-01-05T00:00:00Z",
+    "movieTitle": "The Godfather",
+    "releaseYear": 1972,
+    "genre": "Drama",
+    "year": 1973,
+    "category": "Best Supporting Actor",
+    "won": true
+  },
+  {
+    "actorFirstName": "Marlon",
+    "actorLastName": "Brando",
+    "actorDateOfBirth": "1924-04-03T00:00:00Z",
+    "movieTitle": "The Godfather",
+    "releaseYear": 1972,
+    "genre": "Drama",
+    "year": 1973,
+    "category": "Best Actor",
+    "won": true
+  },
+  {
+    "actorFirstName": "Al",
+    "actorLastName": "Pacino",
+    "actorDateOfBirth": "1940-04-25T00:00:00Z",
+    "movieTitle": "The Godfather Part II",
+    "releaseYear": 1974,
+    "genre": "Drama",
+    "year": 1975,
+    "category": "Best Actor",
+    "won": false
+  },
+  {
+    "actorFirstName": "Robert",
+    "actorLastName": "De Niro",
+    "actorDateOfBirth": "1943-08-17T00:00:00Z",
+    "movieTitle": "The Godfather Part II",
+    "releaseYear": 1974,
+    "genre": "Drama",
+    "year": 1975,
+    "category": "Best Supporting Actor",
+    "won": true
+  },
+  {
+    "actorFirstName": "Tom",
+    "actorLastName": "Hanks",
+    "actorDateOfBirth": "1956-07-09T00:00:00Z",
+    "movieTitle": "Forrest Gump",
+    "releaseYear": 1994,
+    "genre": "Drama",
+    "year": 1995,
+    "category": "Best Actor",
+    "won": true
+  },
+  {
+    "actorFirstName": "Robin",
+    "actorLastName": "Wright",
+    "actorDateOfBirth": "1966-04-08T00:00:00Z",
+    "movieTitle": "Forrest Gump",
+    "releaseYear": 1994,
+    "genre": "Drama",
+    "year": 1995,
+    "category": "Best Actress",
+    "won": false
+  },
+  {
+    "actorFirstName": "Leonardo",
+    "actorLastName": "DiCaprio",
+    "actorDateOfBirth": "1974-11-11T00:00:00Z",
+    "movieTitle": "The Revenant",
+    "releaseYear": 2015,
+    "genre": "Adventure",
+    "year": 2016,
+    "category": "Best Actor",
+    "won": true
+  },
+  {
+    "actorFirstName": "Brie",
+    "actorLastName": "Larson",
+    "actorDateOfBirth": "1989-10-01T00:00:00Z",
+    "movieTitle": "Room",
+    "releaseYear": 2015,
+    "genre": "Drama",
+    "year": 2016,
+    "category": "Best Actress",
+    "won": true
+  },
+  {
+    "actorFirstName": "Joaquin",
+    "actorLastName": "Phoenix",
+    "actorDateOfBirth": "1974-10-28T00:00:00Z",
+    "movieTitle": "Joker",
+    "releaseYear": 2019,
+    "genre": "Thriller",
+    "year": 2020,
+    "category": "Best Actor",
+    "won": true
+  },
+  {
+    "actorFirstName": "Brad",
+    "actorLastName": "Pitt",
+    "actorDateOfBirth": "1963-12-18T00:00:00Z",
+    "movieTitle": "Once Upon a Time in Hollywood",
+    "releaseYear": 2019,
+    "genre": "Comedy",
+    "year": 2020,
+    "category": "Best Supporting Actor",
+    "won": true
+  },
+  {
+    "actorFirstName": "Margot",
+    "actorLastName": "Robbie",
+    "actorDateOfBirth": "1990-07-02T00:00:00Z",
+    "movieTitle": "Once Upon a Time in Hollywood",
+    "releaseYear": 2019,
+    "genre": "Comedy",
+    "year": 2020,
+    "category": "Best Supporting Actress",
+    "won": false
+  }
+]
