@@ -6,5 +6,4 @@ public class Actor
     public string FirstName { get; set; } = null!;
     public string LastName { get; set; } = null!;
     public DateTime DateOfBirth { get; set; }
-    public List<Movie> Movies { get; set; } = new();
 }

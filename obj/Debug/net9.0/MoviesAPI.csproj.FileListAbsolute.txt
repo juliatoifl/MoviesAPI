@@ -77,3 +77,4 @@
 /Users/juliatoifl/MoviesAPI/obj/Debug/net9.0/MoviesAPI.sourcelink.json
 /Users/juliatoifl/MoviesAPI/bin/Debug/net9.0/mock_data/nominations.json
 /Users/juliatoifl/MoviesAPI/bin/Debug/net9.0/mock_data/scandals.json
+/Users/juliatoifl/MoviesAPI/bin/Debug/net9.0/mock_data/bulk_import.json

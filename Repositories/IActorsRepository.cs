@@ -13,4 +13,7 @@ public interface IActorsRepository
     Task<int> EnsureActorExists(SqlConnection connection, SqlTransaction transaction, string firstName, string lastName, DateTime dateOfBirth);    Task Update(Actor genre);
     Task Delete(int id);
     Task Delete(SqlConnection connection, SqlTransaction transaction, int actorId);
+    Task<Actor?> FindByDetails(SqlConnection connection, SqlTransaction transaction, string firstName, string lastName, DateTime dateOfBirth);
+    Task<int> Create(SqlConnection connection, SqlTransaction transaction, Actor actor);
+
 }

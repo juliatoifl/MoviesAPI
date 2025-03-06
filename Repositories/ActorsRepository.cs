@@ -6,16 +6,16 @@ namespace MoviesAPI.Repositories;
 
 public class ActorsRepository: IActorsRepository
 {
-    private readonly string connectionString;
+    private readonly string _connectionString;
 
     public ActorsRepository(IConfiguration configuration)
     {
-        connectionString = configuration.GetConnectionString("DefaultConnection")!;
+        _connectionString = configuration.GetConnectionString("DefaultConnection")!;
     }
 
     public async Task<int> Create(Actor actor)
     {
-        using (var connection = new SqlConnection(connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             var query = @"
                         INSERT INTO Actor (FirstName, LastName, DateOfBirth) 
@@ -33,7 +33,7 @@ public class ActorsRepository: IActorsRepository
 
     public async Task<List<Actor>> GetAll()
     {
-        using (var connection = new SqlConnection(connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             var actors = await connection.QueryAsync<Actor>(@"SELECT Id, FirstName, LastName, DateOfBirth FROM Actor");
             return actors.ToList();
@@ -42,7 +42,7 @@ public class ActorsRepository: IActorsRepository
 
     public async Task<Actor?> GetById(int id)
     {
-        using (var connection = new SqlConnection(connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             var actor = await connection.QuerySingleOrDefaultAsync<Actor>(@"SELECT Id, FirstName, LastName, DateOfBirth FROM Actor WHERE Id = @Id", new { id });
             return actor;
@@ -57,7 +57,7 @@ public class ActorsRepository: IActorsRepository
 
     public async Task<bool> Exists(int id)
     {
-        using (var connection = new SqlConnection(connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             var exists = await connection.QuerySingleAsync<bool>(@"IF EXISTS (SELECT 1 FROM Actor WHERE Id = @Id)
                                                                         SELECT 1;
@@ -81,7 +81,7 @@ public class ActorsRepository: IActorsRepository
 
     public async Task Update(Actor actor)
     {
-        using (var connection = new SqlConnection(connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             await connection.ExecuteAsync(@"UPDATE Actor SET FirstName = @FirstName, LastName = @LastName, DateOfBirth = @DateOfBirth WHERE Id = @Id", actor);
         }
@@ -89,7 +89,7 @@ public class ActorsRepository: IActorsRepository
 
     public async Task Delete(int id)
     {
-        using (var connection = new SqlConnection(connectionString))
+        using (var connection = new SqlConnection(_connectionString))
         {
             await connection.ExecuteAsync(@"DELETE FROM Actor WHERE Id = @Id", new { id });
         }
@@ -99,5 +99,21 @@ public class ActorsRepository: IActorsRepository
     {
         var query = "DELETE FROM Actor WHERE Id = @ActorId";
         await connection.ExecuteAsync(query, new { ActorId = actorId }, transaction);
+    }
+    
+    public async Task<Actor?> FindByDetails(SqlConnection connection, SqlTransaction transaction, string firstName, string lastName, DateTime dateOfBirth)
+    {
+        const string query = "SELECT Id, FirstName, LastName, DateOfBirth FROM Actor WHERE FirstName = @FirstName AND LastName = @LastName AND DateOfBirth = @DateOfBirth";
+        return await connection.QuerySingleOrDefaultAsync<Actor>(query, new { FirstName = firstName, LastName = lastName, DateOfBirth = dateOfBirth }, transaction);
+    }
+
+    public async Task<int> Create(SqlConnection connection, SqlTransaction transaction, Actor actor)
+    {
+        const string query = @"
+                INSERT INTO Actor (FirstName, LastName, DateOfBirth) 
+                VALUES (@FirstName, @LastName, @DateOfBirth);
+                SELECT SCOPE_IDENTITY();";
+
+        return await connection.ExecuteScalarAsync<int>(query, actor, transaction);
     }
 }
